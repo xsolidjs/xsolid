@@ -1,5 +1,4 @@
-import xs, { Producer, Listener } from 'xstream';
-import fromEvent from 'xstream/extra/fromEvent';
+import { fromEvent, Subject } from 'rxjs';
 
 export const createRef = () => {
   const producer = new EventProducer();
@@ -10,14 +9,14 @@ export const createRef = () => {
 
   createEventStream.events = (eventName: string) => {
     producer.setEventName(eventName);
-    return xs.create(producer);
+    return producer.event$;
   };
 
   return createEventStream;
 };
 
-class EventProducer implements Producer<Event> {
-  private listener?: Listener<Event>;
+class EventProducer {
+  public event$ = new Subject();
   private element?: Element;
   private eventName?: string;
 
@@ -33,15 +32,7 @@ class EventProducer implements Producer<Event> {
 
   createEvent() {
     if (this.element && this.eventName) {
-      fromEvent(this.element, this.eventName).addListener({
-        next: (e) => this.listener?.next(e),
-      });
+      fromEvent(this.element, this.eventName).subscribe(this.event$);
     }
   }
-
-  start(listener: Listener<Event>) {
-    this.listener = listener;
-  }
-
-  stop() { }
 }

@@ -23,7 +23,7 @@ export const effects: Effects = {
 export const effect = <Next, Init = Next>(
   fn: EffectFunction<Init | Next, Next>,
   current: Init,
-  options?: EffectOptions
+  // options?: EffectOptions
 ): void => {
   effects.fns.get(effects.current)?.push({
     current: fn(current),

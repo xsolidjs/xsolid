@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "dom-expressions": "0.31.10",
-    "xstream": "11.14.0"
+    "rxjs": "7.5.2"
   },
   "devDependencies": {
     "@types/node": "17.0.10",

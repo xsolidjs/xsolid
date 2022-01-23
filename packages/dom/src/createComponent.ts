@@ -1,9 +1,9 @@
+import { of } from 'rxjs';
 import { JSX, FC } from './';
-import xs from 'xstream';
 import { effects } from './effect';
 
 export const createComponent = <T, P>(Comp: FC<T, P>, props: P): JSX.Element => {
-  const comp = Comp(xs.of(props));
+  const comp = Comp(of(props));
   const { sources, render } = comp;
 
   const beforeSym = effects.current;
@@ -17,20 +17,16 @@ export const createComponent = <T, P>(Comp: FC<T, P>, props: P): JSX.Element => 
 
   if (sources) {
     const sourceKeys = Object.keys(sources);
-    const sourceStreams = sourceKeys.map(key => sources[key]);
 
-    xs.combine(...sourceStreams).addListener({
-      next: (value) => {
-        sinks = value.reduce<any>((prev: any, cur, i) => {
-          prev[sourceKeys[i]] = cur;
-          return prev;
-        }, sinks);
-
+    sourceKeys.forEach(key => {
+      sources[key]?.subscribe((v: any) => {
+        sinks[key] = v;
         effects.fns.get(sym)?.forEach((ef) => {
           ef.current = ef.effect(ef.current);
         });
-      }
+      });
     });
+    // TODO：effect 批量更新
   };
 
   const dom = render(sinks);
