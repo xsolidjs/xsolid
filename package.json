@@ -1,0 +1,8 @@
+{
+  "name": "xsolid",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xsolidjs/xsolid.git",
+  "author": "foreverzmy <921255465@qq.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+export * from './type';
+export { JSX } from '../jsx-runtime';
+export * from 'dom-expressions/src/client';
+export { root } from './root';
+export { createRef } from './ref';
+export { effect } from './effect';
+export { memo } from './memo';
+export { getOwner } from './getOwner';
+export { sharedConfig } from './sharedConfig';
+export { createComponent } from './createComponent';

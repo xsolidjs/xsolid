@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "allowJs": false,
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "jsxImportSource": "dom-expressions",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noEmit": false,
+    "noImplicitAny": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "types": [],
+    "paths": {}
+  },
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2
+  },
+  "include": [
+    "./src",
+    "./jsx-runtime.d.ts"
+  ],
+  "exclude": [
+    "node_modules/*"
+  ]
+}
